@@ -209,9 +209,14 @@ export function ParameterSelector({
                 const optionObj = category.options.find((o) => o.value === option);
                 const icon = optionObj ? getOptionIcon(optionObj, category.id) : <Star className="h-4 w-4" />;
                 return (
-                  <Badge key={option} variant="style" className={category.id} onRemove={() => onRemoveOption(option)}>
+                  <Badge 
+                    key={option} 
+                    variant="style" 
+                    className={category.id} 
+                    onRemove={() => onRemoveOption(option)}
+                  >
                     {icon}
-                    {optionObj?.label || option}
+                    <span className="mx-1 inline-block">{optionObj?.label || option}</span>
                   </Badge>
                 );
               })

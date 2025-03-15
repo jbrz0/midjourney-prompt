@@ -1,10 +1,13 @@
 /* Direct styling that doesn't depend on Tailwind */
 
+/* Import Inter font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 /* Global elements */
 body {
   background-color: #fafafa;
   color: #171717;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden; /* Prevent horizontal scrolling */
   max-width: 100vw; /* Ensure no content is wider than viewport */
 }
@@ -14,7 +17,7 @@ header {
   background: linear-gradient(to right, #2563eb, #9333ea) !important;
   color: white !important;
   padding: 2rem 0 !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: none !important; /* Remove shadow */
   width: 100% !important;
 }
 
@@ -37,22 +40,23 @@ footer {
   border: 1px solid #e5e7eb !important;
   border-radius: 0.5rem !important;
   overflow: hidden !important;
-  margin-bottom: 1rem !important;
+  margin-bottom: 1.5rem !important;
   background-color: white !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: none !important; /* Remove shadow */
   max-width: 100% !important; /* Ensure cards don't overflow */
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out !important;
+  transition: none !important; /* Remove transition */
+  padding: 0.5rem;
 }
 
 [class*="Card"]:hover, div[class*="card"]:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  transform: none !important; /* Remove transform */
+  box-shadow: none !important; /* Remove shadow on hover */
 }
 
-[class*="CardHeader"], div[class*="card-header"] {
+[class*="CardHeader"], div[class*="card-header"], .card-header {
   background-color: #f9fafb !important;
   border-bottom: 1px solid #e5e7eb !important;
-  padding: 1rem !important;
+  padding: 1.25rem !important;
 }
 
 [class*="CardTitle"], [class*="card-title"], h2 {
@@ -62,7 +66,7 @@ footer {
 }
 
 [class*="CardContent"], div[class*="card-content"] {
-  padding: 1rem !important;
+  padding: 1.25rem !important;
   width: 100% !important;
   box-sizing: border-box !important;
   max-width: 100% !important;
@@ -72,8 +76,8 @@ footer {
 /* Button styling */
 button, [type="button"] {
   border-radius: 0.375rem !important;
-  padding: 0.5rem 1rem !important;
-  transition: all 0.2s !important;
+  padding: 0.25rem 0.5rem !important;
+  transition: none !important; /* Remove transition */
   font-weight: 500 !important;
   cursor: pointer !important;
   display: inline-flex !important;
@@ -83,21 +87,27 @@ button, [type="button"] {
   border: 1px solid transparent !important;
   background-color: #f3f4f6 !important;
   color: #374151 !important;
-  white-space: nowrap !important;
+  white-space: normal !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
+  height: auto !important;
+  min-height: 3rem !important;
+  line-height: 1.3 !important;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 0.75rem !important;
 }
 
 button:hover, [type="button"]:hover {
   background-color: #e5e7eb !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  transform: none !important; /* Remove transform */
+  box-shadow: none !important; /* Remove shadow on hover */
 }
 
 button svg, [type="button"] svg {
   width: 1rem !important;
   height: 1rem !important;
   flex-shrink: 0 !important;
+  margin-right: 0.5rem !important;
 }
 
 [class*="outline"] {
@@ -115,25 +125,28 @@ button svg, [type="button"] svg {
   display: inline-flex !important;
   align-items: center !important;
   border-radius: 9999px !important;
-  padding: 0.35rem 0.75rem !important;
+  padding: 0.5rem 0.75rem !important;
   font-size: 0.85rem !important;
   font-weight: 500 !important;
   background-color: #eef2ff !important;
   color: #4f46e5 !important;
-  margin: 0.25rem !important;
+  margin: 0.35rem !important;
   max-width: calc(100% - 10px) !important;
-  white-space: nowrap !important;
+  white-space: normal !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   flex-shrink: 0 !important;
   border: 1px solid rgba(79, 70, 229, 0.2) !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
-  transition: all 0.15s ease !important;
+  box-shadow: none !important; /* Remove shadow */
+  transition: none !important; /* Remove transition */
+  line-height: 1.3 !important;
+  word-break: break-word !important;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 [class*="Badge"]:hover, div[class*="badge"]:hover {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-  transform: translateY(-1px) !important;
+  box-shadow: none !important; /* Remove shadow on hover */
+  transform: none !important; /* Remove transform */
 }
 
 /* Special styling for negative options */
@@ -149,15 +162,16 @@ button svg, [type="button"] svg {
   align-items: center !important;
   justify-content: center !important;
   padding: 0.15rem !important;
-  margin-left: 0.35rem !important;
+  margin-left: 0.5rem !important;
   background-color: transparent !important;
   font-size: 0.85rem !important;
   color: currentColor !important;
   opacity: 0.7 !important;
   border-radius: 9999px !important;
-  width: 18px !important;
-  height: 18px !important;
+  width: 20px !important;
+  height: 20px !important;
   line-height: 1 !important;
+  flex-shrink: 0 !important;
 }
 
 [class*="Badge"] button:hover, div[class*="badge"] button:hover {
@@ -171,7 +185,7 @@ button svg, [type="button"] svg {
 [class*="Badge"] svg, div[class*="badge"] svg {
   width: 14px !important;
   height: 14px !important;
-  margin-right: 4px !important;
+  margin-right: 6px !important;
   flex-shrink: 0 !important;
 }
 
@@ -185,14 +199,15 @@ input, textarea {
   color: #111827 !important;
   box-sizing: border-box !important;
   font-size: 0.95rem !important;
-  transition: all 0.2s ease !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+  transition: none !important; /* Remove transition */
+  box-shadow: none !important; /* Remove shadow */
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 input:focus, textarea:focus {
   outline: none !important;
   border-color: #4f46e5 !important;
-  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.25) !important;
+  box-shadow: none !important; /* Remove shadow */
 }
 
 /* Fix the selected options container */
@@ -201,20 +216,20 @@ div[class*="flex-wrap"], div[class*="mb-4 p-2 bg-gray-50 rounded-md"] {
   flex-wrap: wrap !important;
   gap: 0.5rem !important;
   background-color: #f9fafb !important;
-  padding: 0.75rem !important;
+  padding: 1rem !important;
   border-radius: 0.5rem !important;
-  min-height: 2.5rem !important;
+  min-height: 3rem !important;
   max-width: 100% !important;
   overflow: hidden !important;
   box-sizing: border-box !important;
-  margin-bottom: 1rem !important;
+  margin-bottom: 1.25rem !important;
   border: 1px solid #f1f5f9 !important;
 }
 
 /* Grid layouts - fix container width issue and improve responsiveness */
 div[class*="grid"] {
   display: grid !important;
-  gap: 0.75rem !important;
+  gap: 1rem !important;
   width: 100% !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
@@ -223,20 +238,22 @@ div[class*="grid"] {
 
 /* Parameter buttons */
 button[class*="variant"] {
-  font-size: 0.85rem !important;
-  padding: 0.5rem 0.75rem !important;
-  text-align: center !important;
+  font-size: 0.9rem !important;
+  padding: 0.75rem 1rem !important;
+  text-align: left !important;
   width: 100% !important;
-  white-space: nowrap !important;
+  white-space: normal !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   height: auto !important;
-  min-height: 2.5rem !important;
+  min-height: 3rem !important;
   display: flex !important;
   align-items: center !important;
-  justify-content: space-between !important;
+  justify-content: flex-start !important;
   max-width: 100% !important;
-  transition: all 0.2s ease !important;
+  transition: none !important; /* Remove transition */
+  line-height: 1.3 !important;
+  word-break: break-word !important;
 }
 
 /* Selected parameter styling */
@@ -262,6 +279,33 @@ button[class*="purple"] {
   background-color: #ede9fe !important;
   color: #5b21b6 !important;
   border-color: #c4b5fd !important;
+}
+
+/* Section headers with icons - Fix icon alignment */
+[class*="CardHeader"] .flex.items-center, .card-header .flex.items-center {
+  display: flex !important;
+  /* align-items: center !important; */
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Fix icon alignment with title */
+[class*="CardHeader"] .flex.items-center svg, .card-header .flex.items-center svg {
+  margin-right: 0.75rem !important;
+  margin-top: 1.15rem !important;
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+}
+
+/* Fix title container alignment */
+[class*="CardHeader"] .flex.items-center > div, .card-header .flex.items-center > div {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+h3 {
+  margin-bottom: 0 !important;
 }
 
 /* Specific components styling */
@@ -299,7 +343,7 @@ button.bg-red-500:hover {
 .container, div[class*="container"] {
   width: 100% !important;
   max-width: 1200px !important;
-  margin: 0 auto !important;
+  margin: 0 auto;
   padding: 0 1rem !important;
   box-sizing: border-box !important;
   overflow: hidden !important;
@@ -327,7 +371,7 @@ main, [class*="main"] {
 
 /* Fix layout issues */
 main {
-  padding: 1rem !important;
+  padding: 1.5rem !important;
   width: 100% !important;
 }
 
@@ -342,7 +386,8 @@ div[class*="group-hover:visible"] {
   border-radius: 0.25rem !important;
   max-width: 15rem !important;
   pointer-events: none !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  box-shadow: none !important; /* Remove shadow */
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 /* Responsive grid overrides */
@@ -370,6 +415,11 @@ div[class*="group-hover:visible"] {
   div[class*="grid-cols-4"] {
     grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   }
+  
+  /* Add padding to the right column */
+  .prompt-builder-grid > div:nth-child(2) {
+    padding-left: 1rem !important;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -384,19 +434,20 @@ div[class*="group-hover:visible"] {
 
 /* Custom styles for better UI */
 .parameter-option {
-  transition: all 0.2s ease !important;
+  transition: none !important; /* Remove transition */
   position: relative !important;
   max-width: 100% !important;
   overflow: hidden !important;
+  margin-bottom: 0.5rem !important;
 }
 
 .parameter-option:hover {
-  transform: translateY(-2px) !important;
+  transform: none !important; /* Remove transform */
   z-index: 10 !important;
 }
 
 .parameter-icon {
-  margin-right: 0.25rem !important;
+  margin-right: 0.5rem !important;
   width: 1rem !important;
   height: 1rem !important;
   flex-shrink: 0 !important;
@@ -459,6 +510,7 @@ div[class*="ParameterSelector"] {
   flex-wrap: wrap !important;
   max-width: 100% !important;
   overflow: hidden !important;
+  margin-bottom: 2rem !important;
 }
 
 /* Force all text to wrap or truncate */
@@ -554,10 +606,155 @@ button[role="tab"] {
   color: #4b5563 !important;
   white-space: nowrap !important;
   flex-shrink: 0 !important;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 button[role="tab"][aria-selected="true"] {
   background-color: white !important;
   color: #1e40af !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
-} 
+  box-shadow: none !important; /* Remove shadow */
+}
+
+/* Toggle switch styling */
+.toggle-container {
+  display: inline-flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-right: 10px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+  background-color: #3b82f6;
+}
+
+input:focus + .toggle-slider {
+  box-shadow: none !important; /* Remove shadow */
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(26px);
+}
+
+.toggle-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* SREF section styling */
+.sref-section {
+  background-color: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sref-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sref-title {
+  font-weight: 600;
+  color: #0369a1;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.sref-title svg {
+  margin-right: 0.5rem;
+}
+
+.sref-description {
+  color: #0c4a6e;
+  font-size: 0.9rem;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* Fix section header spacing */
+[class*="CardHeader"] .flex.items-center, .card-header .flex.items-center {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Remove black bars at the bottom of option buttons */
+.parameter-option::after {
+  display: none !important;
+}
+
+/* Remove any black bars that might be showing up */
+.parameter-option > *::after,
+button::after,
+div::after {
+  display: none !important;
+}
+
+/* Ensure all buttons in the grid have consistent styling without any bars */
+.grid button,
+.grid [type="button"],
+.parameter-option button {
+  /* border-bottom: none !important; */
+  border-radius: 0.375rem !important;
+  margin-bottom: 0 !important;
+}
+
+/* Add padding to the right column on all screen sizes */
+.prompt-builder-grid > div:nth-child(2) {
+  padding-left: 0.5rem !important;
+}
+
+@media (min-width: 768px) {
+  .prompt-builder-grid > div:nth-child(2) {
+    padding-left: 1rem !important;
+  }
+}
+
+.card-header > svg {
+  margin-top: 1.075rem !important;
+  margin-right: 0.75rem !important;
+}

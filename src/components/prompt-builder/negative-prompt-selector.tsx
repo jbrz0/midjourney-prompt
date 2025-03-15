@@ -113,7 +113,7 @@ export function NegativePromptSelector({
                   style={{ backgroundColor: '#fee2e2', color: '#b91c1c' }}
                 >
                   {getNegativeOptionIcon(option)}
-                  {option}
+                  <span className="mx-1 inline-block">{option}</span>
                 </Badge>
               ))
             ) : (

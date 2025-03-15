@@ -8,6 +8,7 @@ import { AspectRatioSelector } from "./aspect-ratio-selector";
 import { ParameterSelector } from "./parameter-selector";
 import { NegativePromptSelector } from "./negative-prompt-selector";
 import { PromptStarter } from "./prompt-starter";
+import { SrefSelector } from "./sref-selector";
 import { stylizedParameters, midJourneyParameters } from "@/lib/data/midjourney-data";
 import { Copy, Download, RefreshCw } from "lucide-react";
 import { copyToClipboard, downloadAsText } from "@/lib/utils";
@@ -21,6 +22,7 @@ export function PromptBuilder() {
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string[]>>({});
   const [selectedStarter, setSelectedStarter] = useState<string | null>(null);
   const [finalPrompt, setFinalPrompt] = useState("");
+  const [srefEnabled, setSrefEnabled] = useState(false);
   
   // Initialize the selectedOptions state with empty arrays for each category
   useEffect(() => {
@@ -42,6 +44,7 @@ export function PromptBuilder() {
     customNegativePrompt,
     selectedOptions,
     selectedStarter,
+    srefEnabled,
   ]);
 
   const handleSelectOption = (categoryId: string, option: string) => {
@@ -66,6 +69,10 @@ export function PromptBuilder() {
 
   const handleRemoveNegativeOption = (option: string) => {
     setSelectedNegativeOptions(selectedNegativeOptions.filter((o) => o !== option));
+  };
+
+  const handleToggleSref = () => {
+    setSrefEnabled(!srefEnabled);
   };
 
   const buildFinalPrompt = () => {
@@ -110,12 +117,16 @@ export function PromptBuilder() {
     // Add model version parameter
     const modelVersionStr = selectedModel ? `--v ${selectedModel}` : "";
     
+    // Add SREF if enabled
+    const srefStr = srefEnabled ? `--sref random` : "";
+    
     // Combine everything
     const allParts = [
       positivePrompt,
       negativePromptStr,
       aspectRatioStr,
       modelVersionStr,
+      srefStr,
     ].filter(Boolean);
     
     setFinalPrompt(allParts.join(" "));
@@ -135,6 +146,7 @@ export function PromptBuilder() {
     setSelectedAspectRatio(null);
     setSelectedNegativeOptions([]);
     setCustomNegativePrompt("");
+    setSrefEnabled(false);
     
     const resetOptions: Record<string, string[]> = {};
     stylizedParameters.forEach((category) => {
@@ -151,25 +163,37 @@ export function PromptBuilder() {
 
   return (
     <div className="prompt-builder-container">
-      {/* Main Grid with two columns on desktop */}
-      <div className="prompt-builder-grid md:grid-cols-2 grid-cols-1">
-        <div className="flex flex-col gap-6">
-          {/* Left Column */}
-          <Card className="shadow-md p-6">
-            <h2 className="text-xl font-bold mb-4">Main Prompt</h2>
-            <textarea
-              className="w-full h-40 p-4 rounded border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="Describe what you want to see in your image..."
-              value={mainPrompt}
-              onChange={(e) => setMainPrompt(e.target.value)}
-            />
-          </Card>
+      {/* Main Prompt at the top (full width) */}
+      <Card className="shadow-md p-6 mb-6">
+        <h2 className="text-xl font-bold mb-4">Main Prompt</h2>
+        <textarea
+          className="w-full h-40 p-4 rounded border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          placeholder="Describe what you want to see in your image..."
+          value={mainPrompt}
+          onChange={(e) => setMainPrompt(e.target.value)}
+        />
+      </Card>
 
+      {/* Model and SREF selectors at the top */}
+      <div className="flex flex-col md:flex-row gap-6 mb-6">
+        <div className="w-full md:w-1/2">
           <ModelSelector 
             selectedModel={selectedModel} 
             onSelectModel={setSelectedModel} 
           />
+        </div>
+        <div className="w-full md:w-1/2">
+          <SrefSelector
+            srefEnabled={srefEnabled}
+            onToggleSref={handleToggleSref}
+          />
+        </div>
+      </div>
 
+      {/* Main Grid with two columns on desktop */}
+      <div className="prompt-builder-grid md:grid-cols-2 grid-cols-1">
+        <div className="flex flex-col gap-6">
+          {/* Left Column */}
           <PromptStarter
             selectedStarter={selectedStarter}
             onSelectStarter={setSelectedStarter}
