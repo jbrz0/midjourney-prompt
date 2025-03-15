@@ -275,9 +275,6 @@ function OptionButton({ option, isSelected, onSelect, onRemove, categoryId }: Op
         </span>
         {isSelected && <Check className="h-3 w-3 ml-1 flex-shrink-0" />}
       </Button>
-      <div className="absolute invisible group-hover:visible z-10 bg-black text-white text-xs rounded px-2 py-1 right-0 -top-10 w-48">
-        {option.description}
-      </div>
     </div>
   );
 } 

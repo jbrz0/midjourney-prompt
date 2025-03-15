@@ -72,9 +72,6 @@ export function ModelSelector({ selectedModel, onSelectModel }: ModelSelectorPro
                     <span className="ml-1 truncate">{model.label}</span>
                   </span>
                 </Button>
-                <div className="absolute invisible group-hover:visible z-10 bg-black text-white text-xs rounded px-2 py-1 right-0 -top-10 w-60">
-                  {model.description}
-                </div>
               </div>
             );
           })}

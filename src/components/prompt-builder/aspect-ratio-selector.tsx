@@ -85,9 +85,6 @@ export function AspectRatioSelector({
                     <span className="ml-1 truncate">{aspectRatio.label}</span>
                   </span>
                 </Button>
-                <div className="absolute invisible group-hover:visible z-10 bg-black text-white text-xs rounded px-2 py-1 right-0 -top-10 w-48">
-                  {aspectRatio.description}
-                </div>
               </div>
             );
           })}

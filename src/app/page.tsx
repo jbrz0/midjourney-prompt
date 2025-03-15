@@ -27,7 +27,7 @@ export default function Home() {
         borderTop: "1px solid #e5e7eb"
       }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 1rem", textAlign: "center", color: "#6b7280" }}>
-          <p>Midjourney Prompt Generator • Designed to help you create amazing AI art</p>
+          <p>Midjourney Prompt Generator • X → <a href="https://x.com/jbrz0" target="_blank" rel="noopener noreferrer">@jbrz0</a></p>
         </div>
       </footer>
     </div>
