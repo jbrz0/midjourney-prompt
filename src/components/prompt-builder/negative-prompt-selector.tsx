@@ -110,10 +110,17 @@ export function NegativePromptSelector({
                   key={option}
                   variant="negative"
                   onRemove={() => onRemoveNegativeOption(option)}
-                  style={{ backgroundColor: '#fee2e2', color: '#b91c1c' }}
+                  style={{ 
+                    backgroundColor: '#fee2e2', 
+                    color: '#b91c1c',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '4px'
+                  }}
                 >
                   {getNegativeOptionIcon(option)}
-                  <span className="mx-1 inline-block">{option}</span>
+                  <span className="inline-block font-medium">{option}</span>
                 </Badge>
               ))
             ) : (
@@ -124,7 +131,7 @@ export function NegativePromptSelector({
           </div>
         </div>
 
-        <div className="flex items-center gap-2 mb-4" style={{ maxWidth: '100%', overflow: 'hidden' }}>
+        <div className="flex items-center gap-2 mb-4" style={{ maxWidth: '100%', overflow: 'hidden', marginBottom: '1.5rem', marginTop: '1rem' }}>
           <div className="flex-1 relative" style={{ maxWidth: 'calc(100% - 80px)' }}>
             <input
               type="text"
@@ -155,13 +162,13 @@ export function NegativePromptSelector({
           </Button>
         </div>
 
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4" style={{ maxWidth: '100%', overflow: 'hidden' }}>
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" style={{ maxWidth: '100%', overflow: 'hidden' }}>
           {negativePromptOptions.map((option) => {
             const isSelected = selectedNegativeOptions.includes(option);
             const optionIcon = getNegativeOptionIcon(option);
             
             return (
-              <div key={option} className="parameter-option" style={{ maxWidth: '100%', overflow: 'hidden' }}>
+              <div key={option} className="parameter-option" style={{ maxWidth: '100%', overflow: 'hidden', width: '100%' }}>
                 <Button
                   variant={isSelected ? "secondary" : "outline"}
                   className={`text-xs flex items-center justify-between parameter-option ${isSelected ? 'bg-red-100 text-red-800 border-red-300' : 'border-gray-300'}`}
@@ -170,7 +177,7 @@ export function NegativePromptSelector({
                       ? onRemoveNegativeOption(option)
                       : onAddNegativeOption(option)
                   }
-                  style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                  style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', width: '100%' }}
                 >
                   <span className="flex items-center truncate" style={{ maxWidth: 'calc(100% - 20px)' }}>
                     {optionIcon}

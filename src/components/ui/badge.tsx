@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const badgeVariants = cva(
-  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+  "selected-badge inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
   {
     variants: {
       variant: {
@@ -40,7 +40,7 @@ function Badge({ className, variant, onRemove, children, ...props }: BadgeProps)
       {children}
       {onRemove && (
         <button
-          className="ml-1 rounded-full text-[10px] font-semibold hover:text-black/80"
+          className="ml-1 rounded-full text-[10px] font-semibold hover:text-black/80 badge-close-button"
           onClick={(e) => {
             e.stopPropagation();
             onRemove();

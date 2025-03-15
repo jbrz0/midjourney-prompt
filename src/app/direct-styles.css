@@ -19,6 +19,8 @@ header {
   padding: 2rem 0 !important;
   box-shadow: none !important; /* Remove shadow */
   width: 100% !important;
+  border-radius: 18px;
+  margin-bottom: 2rem !important;
 }
 
 h1 {
@@ -40,7 +42,8 @@ footer {
   border: 1px solid #e5e7eb !important;
   border-radius: 0.5rem !important;
   overflow: hidden !important;
-  margin-bottom: 1.5rem !important;
+  /* margin-bottom: 1.5rem !important; */
+  margin-bottom: 0.5rem !important;
   background-color: white !important;
   box-shadow: none !important; /* Remove shadow */
   max-width: 100% !important; /* Ensure cards don't overflow */
@@ -90,7 +93,7 @@ button, [type="button"] {
   white-space: normal !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
-  height: auto !important;
+  height: auto;
   min-height: 3rem !important;
   line-height: 1.3 !important;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
@@ -114,6 +117,8 @@ button svg, [type="button"] svg {
   background-color: transparent !important;
   border: 1px solid #d1d5db !important;
   color: #374151 !important;
+
+  text-align: left !important;
 }
 
 [class*="outline"]:hover {
@@ -124,29 +129,32 @@ button svg, [type="button"] svg {
 [class*="Badge"], div[class*="badge"] {
   display: inline-flex !important;
   align-items: center !important;
-  border-radius: 9999px !important;
+  border-radius: 0.5rem !important; /* Changed from 9999px to more subtle rounded corners */
   padding: 0.5rem 0.75rem !important;
   font-size: 0.85rem !important;
   font-weight: 500 !important;
   background-color: #eef2ff !important;
   color: #4f46e5 !important;
-  margin: 0.35rem !important;
+  margin: 0.25rem !important; /* Reduced margin for tighter layout */
   max-width: calc(100% - 10px) !important;
   white-space: normal !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   flex-shrink: 0 !important;
   border: 1px solid rgba(79, 70, 229, 0.2) !important;
-  box-shadow: none !important; /* Remove shadow */
-  transition: none !important; /* Remove transition */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important; /* Subtle shadow for depth */
+  transition: all 0.2s ease !important;
   line-height: 1.3 !important;
   word-break: break-word !important;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 [class*="Badge"]:hover, div[class*="badge"]:hover {
-  box-shadow: none !important; /* Remove shadow on hover */
-  transform: none !important; /* Remove transform */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+
+
+  /* Subtle lift effect on hover */
+  /* transform: translateY(-1px) !important;  */
 }
 
 /* Special styling for negative options */
@@ -161,24 +169,27 @@ button svg, [type="button"] svg {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 0.15rem !important;
+  padding: 0.15rem;
   margin-left: 0.5rem !important;
-  background-color: transparent !important;
+  background-color: rgba(0, 0, 0, 0.05) !important; /* Subtle background for button */
   font-size: 0.85rem !important;
   color: currentColor !important;
   opacity: 0.7 !important;
-  border-radius: 9999px !important;
-  width: 20px !important;
+  border-radius: 0.375rem !important; /* Match the badge corners */
+  width: 20px;
   height: 20px !important;
   line-height: 1 !important;
   flex-shrink: 0 !important;
+  transition: all 0.2s ease !important;
 }
 
 [class*="Badge"] button:hover, div[class*="badge"] button:hover {
   opacity: 1 !important;
-  background-color: rgba(0, 0, 0, 0.05) !important;
-  box-shadow: none !important;
-  transform: none !important;
+  /* background-color: rgba(0, 0, 0, 0.1) !important; */
+  transform: scale(1.1) !important; /* Slightly enlarge on hover */
+
+  background: linear-gradient(to right, #2563eb, #9333ea) !important;
+  box-shadow: 4px 4px 20px #2563eb !important;
 }
 
 /* Badge icon styling */
@@ -215,15 +226,29 @@ div[class*="flex-wrap"], div[class*="mb-4 p-2 bg-gray-50 rounded-md"] {
   display: flex !important;
   flex-wrap: wrap !important;
   gap: 0.5rem !important;
-  background-color: #f9fafb !important;
-  padding: 1rem !important;
+  background-color: #f8fafc !important; /* Lighter background */
+  padding: 0.75rem !important;
   border-radius: 0.5rem !important;
   min-height: 3rem !important;
   max-width: 100% !important;
   overflow: hidden !important;
   box-sizing: border-box !important;
-  margin-bottom: 1.25rem !important;
-  border: 1px solid #f1f5f9 !important;
+  margin-bottom: 1.25rem;
+  border: 1px solid #e2e8f0 !important; /* Slightly darker border for definition */
+  align-items: center !important;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02) !important; /* Subtle inset shadow */
+}
+
+/* Selected options container specific styling */
+.selected-options-container {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  margin-bottom: 0.75rem !important;
+  gap: 0.5rem !important;
+  align-items: center !important;
+  min-height: 2.5rem !important; /* Ensure consistent height even when empty */
 }
 
 /* Grid layouts - fix container width issue and improve responsiveness */
@@ -236,7 +261,7 @@ div[class*="grid"] {
   overflow: hidden !important;
 }
 
-/* Parameter buttons */
+/* Parameter buttons - improved for better flow */
 button[class*="variant"] {
   font-size: 0.9rem !important;
   padding: 0.75rem 1rem !important;
@@ -254,6 +279,7 @@ button[class*="variant"] {
   transition: none !important; /* Remove transition */
   line-height: 1.3 !important;
   word-break: break-word !important;
+  margin-bottom: 0.5rem !important;
 }
 
 /* Selected parameter styling */
@@ -279,6 +305,39 @@ button[class*="purple"] {
   background-color: #ede9fe !important;
   color: #5b21b6 !important;
   border-color: #c4b5fd !important;
+}
+
+/* Option buttons container - waterfall layout for small screens */
+div[class*="grid-cols-1"], 
+div[class*="grid-cols-2"], 
+div[class*="grid-cols-3"], 
+div[class*="grid-cols-4"] {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.5rem !important;
+  width: 100% !important;
+}
+
+/* Option button sizing for waterfall layout */
+div[class*="grid-cols-1"] > div,
+div[class*="grid-cols-2"] > div,
+div[class*="grid-cols-3"] > div,
+div[class*="grid-cols-4"] > div,
+.parameter-option {
+  flex: 1 1 auto !important;
+  min-width: 140px !important;
+  max-width: 100% !important;
+  width: 100% !important; /* Ensure full width */
+}
+
+/* Make buttons fill their container width */
+.parameter-option button,
+button[class*="variant"],
+div[class*="grid"] button {
+  width: 100%;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
 }
 
 /* Section headers with icons - Fix icon alignment */
@@ -321,9 +380,10 @@ div[class*="PromptBuilder"] > div {
 button.bg-blue-500, 
 [class*="btn-primary"],
 button:not([class*="outline"]):not([class*="secondary"]) {
-  background-color: #3b82f6 !important;
-  color: white !important;
-  border: none !important;
+  /* background-color: #3b82f6 !important; */
+  background: #BFECFB !important;
+  color: #2560a8 !important;
+  border: 1px solid #0093EA !important;
 }
 
 /* Action buttons */
@@ -390,10 +450,23 @@ div[class*="group-hover:visible"] {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
-/* Responsive grid overrides */
+/* Responsive adjustments */
 @media (min-width: 640px) {
-  div[class*="grid-cols-1"] {
+  div[class*="grid-cols-1"],
+  div[class*="grid-cols-2"],
+  div[class*="grid-cols-3"],
+  div[class*="grid-cols-4"] {
+    display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  
+  div[class*="grid-cols-1"] > div,
+  div[class*="grid-cols-2"] > div,
+  div[class*="grid-cols-3"] > div,
+  div[class*="grid-cols-4"] > div,
+  .parameter-option {
+    min-width: 0 !important;
+    width: 100% !important;
   }
 }
 
@@ -405,15 +478,18 @@ div[class*="group-hover:visible"] {
   }
   
   div[class*="grid-cols-2"] {
+    display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
   
   div[class*="grid-cols-3"] {
+    display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
   
   div[class*="grid-cols-4"] {
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
   
   /* Add padding to the right column */
@@ -428,7 +504,14 @@ div[class*="group-hover:visible"] {
   }
   
   div[class*="grid-cols-4"] {
-    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Remove the 5-column layout that was causing issues */
+@media (min-width: 1280px) {
+  div[class*="grid-cols-4"] {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   }
 }
 
@@ -504,22 +587,13 @@ div[class*="ParameterSelector"] {
   overflow: hidden !important;
 }
 
-/* Fix badge wrap issues */
-.selected-options-container {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  max-width: 100% !important;
-  overflow: hidden !important;
-  margin-bottom: 2rem !important;
-}
-
 /* Force all text to wrap or truncate */
 * {
   overflow-wrap: break-word !important;
   word-wrap: break-word !important;
 }
 
-/* Badge colors based on categories */
+/* Badge colors based on categories - enhanced with better contrast */
 [class*="Badge"].rendering, div[class*="badge"].rendering {
   background-color: #dbeafe !important;
   color: #1e40af !important;
@@ -685,7 +759,7 @@ input:checked + .toggle-slider:before {
   border: 1px solid #bae6fd;
   border-radius: 0.5rem;
   padding: 1rem;
-  margin: 1rem 0;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -757,4 +831,36 @@ div::after {
 .card-header > svg {
   margin-top: 1.075rem !important;
   margin-right: 0.75rem !important;
+}
+
+.badge-close-button {
+  min-height: 25px !important;
+  width: 27px !important;
+}
+
+.footer-buttons button {
+  margin-right: 0.5rem !important;
+  min-height: 2.5rem !important;
+  padding: 0.5rem 1rem !important;
+}
+
+.footer-buttons button:last-child {
+  margin-right: 0 !important;
+}
+
+.footer-buttons button:hover {
+  /* background: linear-gradient(to right, #2563eb, #9333ea) !important;
+  box-shadow: 4px 4px 20px #2563eb !important;
+  border: 1px solid transparent !important;
+  color: white !important; */
+  opacity: 0.8 !important;
+  background-color: transparent !important;
+}
+
+.footer-buttons {
+  margin-top: 0.5rem !important;
+}
+
+button:not([class*="outline"]):not([class*="secondary"]).badge-close-button:hover {
+  color: white !important;
 }

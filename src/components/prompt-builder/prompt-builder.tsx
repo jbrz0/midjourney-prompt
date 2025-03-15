@@ -251,7 +251,7 @@ export function PromptBuilder() {
               value={finalPrompt}
               readOnly
             />
-            <div className="absolute right-2 bottom-2 flex gap-2">
+            <div className="absolute right-2 bottom-2 flex gap-2 footer-buttons">
               <Button 
                 className="flex items-center bg-blue-500 hover:bg-blue-600 text-white" 
                 onClick={handleCopyPrompt}>

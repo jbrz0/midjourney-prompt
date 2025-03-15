@@ -46,25 +46,39 @@ export function AspectRatioSelector({
       <CardContent className="p-4" style={{ maxWidth: '100%', overflow: 'hidden' }}>
         <div className="mb-4 p-2 bg-gray-50 rounded-md min-h-10" style={{ maxWidth: '100%', overflow: 'hidden' }}>
           {selectedAspectRatio ? (
-            <Badge variant="aspect" onRemove={onClearAspectRatio} style={{ backgroundColor: '#d1fae5', color: '#065f46' }}>
-              {aspectRatios.find((ar) => ar.value === selectedAspectRatio)?.label || selectedAspectRatio}
+            <Badge 
+              variant="aspect" 
+              onRemove={onClearAspectRatio} 
+              style={{ 
+                backgroundColor: '#d1fae5', 
+                color: '#065f46',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '4px'
+              }}
+            >
+              {getAspectRatioIcon(selectedAspectRatio)}
+              <span className="inline-block font-medium">
+                {aspectRatios.find((ar) => ar.value === selectedAspectRatio)?.label || selectedAspectRatio}
+              </span>
             </Badge>
           ) : (
             <p className="text-sm text-gray-500 italic">No aspect ratio selected</p>
           )}
         </div>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5" style={{ maxWidth: '100%', overflow: 'hidden' }}>
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" style={{ maxWidth: '100%', overflow: 'hidden' }}>
           {aspectRatios.map((aspectRatio) => {
             const isSelected = selectedAspectRatio === aspectRatio.value;
             const icon = getAspectRatioIcon(aspectRatio.value);
             
             return (
-              <div key={aspectRatio.value} className="relative group parameter-option" style={{ maxWidth: '100%', overflow: 'hidden' }}>
+              <div key={aspectRatio.value} className="relative group parameter-option" style={{ maxWidth: '100%', overflow: 'hidden', width: '100%' }}>
                 <Button
                   variant={isSelected ? "secondary" : "outline"}
                   className={`w-full flex items-center justify-between ${isSelected ? 'bg-green-100 text-green-800 border-green-300' : 'border-gray-300'}`}
                   onClick={() => onSelectAspectRatio(aspectRatio.value)}
-                  style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                  style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', width: '100%' }}
                 >
                   <span className="flex items-center truncate" style={{ maxWidth: 'calc(100% - 20px)' }}>
                     {icon}

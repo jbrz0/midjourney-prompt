@@ -28,12 +28,24 @@ export function ModelSelector({ selectedModel, onSelectModel }: ModelSelectorPro
       </CardHeader>
       <CardContent className="p-4" style={{ maxWidth: '100%', overflow: 'hidden' }}>
         <div className="mb-4 p-2 bg-gray-50 rounded-md min-h-10" style={{ maxWidth: '100%', overflow: 'hidden' }}>
-          <Badge variant="parameter">
-            <Layers className="h-4 w-4 mr-1" />
-            {modelVersions.find((m) => m.value === selectedModel)?.label || selectedModel}
+          <Badge 
+            variant="parameter"
+            style={{
+              backgroundColor: '#dbeafe',
+              color: '#1e40af',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '4px'
+            }}
+          >
+            <Layers className="h-4 w-4" />
+            <span className="inline-block font-medium">
+              {modelVersions.find((m) => m.value === selectedModel)?.label || selectedModel}
+            </span>
           </Badge>
         </div>
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-4" style={{ maxWidth: '100%', overflow: 'hidden' }}>
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" style={{ maxWidth: '100%', overflow: 'hidden' }}>
           {modelVersions.map((model) => {
             const isSelected = selectedModel === model.value;
             let icon = <Cpu className="h-4 w-4" />;
@@ -48,12 +60,12 @@ export function ModelSelector({ selectedModel, onSelectModel }: ModelSelectorPro
             }
             
             return (
-              <div key={model.value} className="relative group parameter-option" style={{ maxWidth: '100%', overflow: 'hidden' }}>
+              <div key={model.value} className="parameter-option" style={{ maxWidth: '100%', overflow: 'hidden', width: '100%' }}>
                 <Button
                   variant={isSelected ? "secondary" : "outline"}
                   className={`w-full ${isSelected ? 'bg-blue-100 text-blue-800 border-blue-300' : 'border-gray-300'}`}
                   onClick={() => onSelectModel(model.value)}
-                  style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                  style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', width: '100%' }}
                 >
                   <span className="flex items-center truncate" style={{ maxWidth: 'calc(100% - 20px)' }}>
                     {icon}

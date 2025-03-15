@@ -214,9 +214,15 @@ export function ParameterSelector({
                     variant="style" 
                     className={category.id} 
                     onRemove={() => onRemoveOption(option)}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '4px'
+                    }}
                   >
                     {icon}
-                    <span className="mx-1 inline-block">{optionObj?.label || option}</span>
+                    <span className="inline-block font-medium">{optionObj?.label || option}</span>
                   </Badge>
                 );
               })
@@ -227,14 +233,16 @@ export function ParameterSelector({
         </div>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" style={{ maxWidth: '100%', overflow: 'hidden' }}>
           {category.options.map((option) => (
-            <OptionButton
-              key={option.value}
-              option={option}
-              isSelected={selectedOptions.includes(option.value)}
-              onSelect={() => onSelectOption(option.value)}
-              onRemove={() => onRemoveOption(option.value)}
-              categoryId={category.id}
-            />
+            <div key={option.value} className="parameter-option" style={{ maxWidth: '100%', overflow: 'hidden', width: '100%' }}>
+              <OptionButton
+                key={option.value}
+                option={option}
+                isSelected={selectedOptions.includes(option.value)}
+                onSelect={() => onSelectOption(option.value)}
+                onRemove={() => onRemoveOption(option.value)}
+                categoryId={category.id}
+              />
+            </div>
           ))}
         </div>
       </CardContent>
@@ -254,12 +262,12 @@ function OptionButton({ option, isSelected, onSelect, onRemove, categoryId }: Op
   const optionIcon = getOptionIcon(option, categoryId);
   
   return (
-    <div className="relative group parameter-option" style={{ maxWidth: '100%', overflow: 'hidden' }}>
+    <div className="relative group parameter-option" style={{ maxWidth: '100%', overflow: 'hidden', width: '100%' }}>
       <Button
         variant={isSelected ? "secondary" : "outline"}
         className={`w-full justify-between ${isSelected ? 'bg-blue-100 text-blue-800 border-blue-300 parameter-option-selected' : 'border-gray-300'}`}
         onClick={isSelected ? onRemove : onSelect}
-        style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis' }}
+        style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', width: '100%' }}
       >
         <span className="flex items-center truncate" style={{ maxWidth: 'calc(100% - 20px)' }}>
           {optionIcon}

@@ -52,8 +52,22 @@ export function PromptStarter({
       <CardContent className="p-4" style={{ maxWidth: '100%', overflow: 'hidden' }}>
         <div className="mb-4 p-2 bg-gray-50 rounded-md min-h-10" style={{ maxWidth: '100%', overflow: 'hidden' }}>
           {selectedStarter ? (
-            <Badge variant="parameter" onRemove={onClearStarter} style={{ backgroundColor: '#dbeafe', color: '#1e40af' }}>
-              {promptStarters.find((ps) => ps.value === selectedStarter)?.label || selectedStarter}
+            <Badge 
+              variant="parameter" 
+              onRemove={onClearStarter} 
+              style={{ 
+                backgroundColor: '#dbeafe', 
+                color: '#1e40af',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '4px'
+              }}
+            >
+              {getStarterIcon(selectedStarter)}
+              <span className="inline-block font-medium">
+                {promptStarters.find((ps) => ps.value === selectedStarter)?.label || selectedStarter}
+              </span>
             </Badge>
           ) : (
             <p className="text-sm text-gray-500 italic">
@@ -61,18 +75,18 @@ export function PromptStarter({
             </p>
           )}
         </div>
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3" style={{ maxWidth: '100%', overflow: 'hidden' }}>
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" style={{ maxWidth: '100%', overflow: 'hidden' }}>
           {promptStarters.map((starter) => {
             const isSelected = selectedStarter === starter.value;
             const icon = getStarterIcon(starter.value);
             
             return (
-              <div key={starter.value} className="relative group parameter-option" style={{ maxWidth: '100%', overflow: 'hidden' }}>
+              <div key={starter.value} className="parameter-option" style={{ maxWidth: '100%', overflow: 'hidden', width: '100%' }}>
                 <Button
                   variant={isSelected ? "secondary" : "outline"}
                   className={`w-full flex items-center justify-between ${isSelected ? 'bg-blue-100 text-blue-800 border-blue-300' : 'border-gray-300'}`}
                   onClick={() => onSelectStarter(starter.value)}
-                  style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                  style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', width: '100%' }}
                 >
                   <span className="flex items-center truncate" style={{ maxWidth: 'calc(100% - 20px)' }}>
                     {icon}
