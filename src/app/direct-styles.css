@@ -304,6 +304,7 @@ button[class*="red"] {
   background-color: #fee2e2 !important;
   color: #b91c1c !important;
   border-color: #fca5a5 !important;
+  padding: 1rem 1.2rem !important;
 }
 
 button[class*="purple"] {
@@ -401,7 +402,8 @@ button.bg-green-500:hover {
 }
 
 button.bg-red-500:hover {
-  background-color: #dc2626 !important;
+  /* background-color: #dc2626 !important; */
+  background: #FFFFFF !important;
 }
 
 /* Container spacing - fix container width issues */
@@ -844,7 +846,7 @@ div::after {
 
 .badge-close-button {
   min-height: 25px !important;
-  width: 27px !important;
+  width: 28px !important;
 }
 
 .footer-buttons button {
