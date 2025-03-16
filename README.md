@@ -2,6 +2,8 @@
 
 A modern, intuitive web application for creating powerful and effective prompts for Midjourney AI image generation. This tool helps users build prompts with proper parameters, styling, and modifiers to get the best results from Midjourney.
 
+![Midjourney Prompt Generator Screenshot](/public/images/prompt-gen.png)
+
 ## Features
 
 - **Intuitive Interface**: Easy-to-use UI that guides users through the prompt creation process
