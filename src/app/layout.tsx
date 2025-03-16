@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-white font-sans antialiased">
+      <body className={`min-h-screen bg-white font-sans antialiased ${fontSans.variable}`}>
         <main className="min-h-screen">
           {children}
         </main>

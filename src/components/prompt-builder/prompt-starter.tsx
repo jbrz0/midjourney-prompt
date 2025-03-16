@@ -92,6 +92,7 @@ export function PromptStarter({
                     {icon}
                     <span className="ml-1 truncate">{starter.label}</span>
                   </span>
+                  {starter.image && <img src={starter.image} className="h-5 w-5 ml-1 rounded-sm" alt={`${starter.label} example`} />}
                 </Button>
               </div>
             );

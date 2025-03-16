@@ -6,9 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { ParameterCategory, ParameterOption } from "@/lib/data/midjourney-data";
 import { 
-  Info, 
   Check, 
-  X, 
   Star, 
   Sparkles, 
   Image, 
@@ -69,7 +67,6 @@ const getCategoryIcon = (categoryId: string) => {
 // Function to get option-specific icon
 const getOptionIcon = (option: ParameterOption, categoryId: string) => {
   const value = option.value.toLowerCase();
-  const label = option.label.toLowerCase();
   
   // Rendering & Quality icons
   if (categoryId === 'rendering-quality') {
@@ -259,22 +256,21 @@ interface OptionButtonProps {
 }
 
 function OptionButton({ option, isSelected, onSelect, onRemove, categoryId }: OptionButtonProps) {
-  const optionIcon = getOptionIcon(option, categoryId);
+  const icon = getOptionIcon(option, categoryId);
   
   return (
-    <div className="relative group parameter-option" style={{ maxWidth: '100%', overflow: 'hidden', width: '100%' }}>
-      <Button
-        variant={isSelected ? "secondary" : "outline"}
-        className={`w-full justify-between ${isSelected ? 'bg-blue-100 text-blue-800 border-blue-300 parameter-option-selected' : 'border-gray-300'}`}
-        onClick={isSelected ? onRemove : onSelect}
-        style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', width: '100%' }}
-      >
-        <span className="flex items-center truncate" style={{ maxWidth: 'calc(100% - 20px)' }}>
-          {optionIcon}
-          <span className="ml-1 truncate">{option.label}</span>
-        </span>
-        {isSelected && <Check className="h-3 w-3 ml-1 flex-shrink-0" />}
-      </Button>
-    </div>
+    <Button
+      variant={isSelected ? "secondary" : "outline"}
+      className={`text-xs flex items-center justify-between parameter-option ${isSelected ? 'bg-blue-100 text-blue-800 border-blue-300' : 'border-gray-300'}`}
+      onClick={() => isSelected ? onRemove() : onSelect()}
+      style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', width: '100%' }}
+    >
+      <span className="flex items-center truncate" style={{ maxWidth: 'calc(100% - 20px)' }}>
+        {icon}
+        <span className="ml-1 truncate">{option.label}</span>
+      </span>
+      {isSelected && <Check className="h-3 w-3 ml-1 flex-shrink-0" />}
+      {option.image && <img src={option.image} className="h-5 w-5 ml-1 rounded-sm" alt={`${option.label} example`} />}
+    </Button>
   );
 } 

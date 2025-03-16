@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { negativePromptOptions } from "@/lib/data/midjourney-data";
-import { Ban, Plus, X, AlertTriangle, Scissors, Eye, EyeOff, Atom, Fingerprint, Type, FileX, Signature, BadgeAlert, Skull, Eraser, FileImage, Focus, Cloud, FileWarning, Slash, Brush, BadgeX, XOctagon, Zap, Moon, Sun, Copy } from "lucide-react";
+import { Ban, Plus, X, AlertTriangle, Scissors, Eye, EyeOff, Atom, Fingerprint, Type, FileX, Signature, BadgeAlert, Skull, Focus, FileWarning, Brush, BadgeX, Moon, Sun, Copy } from "lucide-react";
 
 interface NegativePromptSelectorProps {
   selectedNegativeOptions: string[];
@@ -61,23 +61,10 @@ const getNegativeOptionIcon = (option: string) => {
   return <Ban className="h-4 w-4" />;
 };
 
-// Function for the X button rendering
-const CloseButton = ({ onClick }: { onClick: () => void }) => (
-  <button 
-    onClick={onClick} 
-    className="ml-1 text-current hover:text-current opacity-60 hover:opacity-100 rounded-full p-0.5 hover:bg-black/10 transition-all" 
-    aria-label="Remove"
-  >
-    <X className="h-3 w-3" />
-  </button>
-);
-
 export function NegativePromptSelector({
   selectedNegativeOptions,
   onAddNegativeOption,
   onRemoveNegativeOption,
-  customNegativePrompt,
-  onCustomNegativePromptChange,
 }: NegativePromptSelectorProps) {
   const [customInput, setCustomInput] = useState("");
 
@@ -96,7 +83,7 @@ export function NegativePromptSelector({
           <div>
             <CardTitle className="text-gray-800">Negative Prompt</CardTitle>
             <CardDescription>
-              Specify what you don't want to see in your image
+              Specify what you don&apos;t want to see in your image
             </CardDescription>
           </div>
         </div>

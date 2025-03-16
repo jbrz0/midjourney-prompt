@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ModelSelector } from "./model-selector";
@@ -9,7 +9,7 @@ import { ParameterSelector } from "./parameter-selector";
 import { NegativePromptSelector } from "./negative-prompt-selector";
 import { PromptStarter } from "./prompt-starter";
 import { SrefSelector } from "./sref-selector";
-import { stylizedParameters, midJourneyParameters } from "@/lib/data/midjourney-data";
+import { stylizedParameters } from "@/lib/data/midjourney-data";
 import { Copy, Download, RefreshCw } from "lucide-react";
 import { copyToClipboard, downloadAsText } from "@/lib/utils";
 
@@ -33,51 +33,9 @@ export function PromptBuilder() {
     setSelectedOptions(initialOptionsState);
   }, []);
 
-  // Build the final prompt whenever dependencies change
-  useEffect(() => {
-    buildFinalPrompt();
-  }, [
-    mainPrompt,
-    selectedModel,
-    selectedAspectRatio,
-    selectedNegativeOptions,
-    customNegativePrompt,
-    selectedOptions,
-    selectedStarter,
-    srefEnabled,
-  ]);
-
-  const handleSelectOption = (categoryId: string, option: string) => {
-    setSelectedOptions((prev) => ({
-      ...prev,
-      [categoryId]: [...(prev[categoryId] || []), option],
-    }));
-  };
-
-  const handleRemoveOption = (categoryId: string, option: string) => {
-    setSelectedOptions((prev) => ({
-      ...prev,
-      [categoryId]: (prev[categoryId] || []).filter((o) => o !== option),
-    }));
-  };
-
-  const handleAddNegativeOption = (option: string) => {
-    if (!selectedNegativeOptions.includes(option)) {
-      setSelectedNegativeOptions([...selectedNegativeOptions, option]);
-    }
-  };
-
-  const handleRemoveNegativeOption = (option: string) => {
-    setSelectedNegativeOptions(selectedNegativeOptions.filter((o) => o !== option));
-  };
-
-  const handleToggleSref = () => {
-    setSrefEnabled(!srefEnabled);
-  };
-
-  const buildFinalPrompt = () => {
+  const buildFinalPrompt = useCallback(() => {
     // Start with the selected starter or empty string
-    let promptParts: string[] = [];
+    const promptParts: string[] = [];
     
     if (selectedStarter) {
       promptParts.push(selectedStarter);
@@ -90,7 +48,7 @@ export function PromptBuilder() {
     
     // Add selected style options
     let styleOptions: string[] = [];
-    Object.entries(selectedOptions).forEach(([categoryId, options]) => {
+    Object.entries(selectedOptions).forEach(([, options]) => {
       styleOptions = [...styleOptions, ...options];
     });
     
@@ -130,6 +88,48 @@ export function PromptBuilder() {
     ].filter(Boolean);
     
     setFinalPrompt(allParts.join(" "));
+  }, [
+    mainPrompt,
+    selectedModel,
+    selectedAspectRatio,
+    selectedNegativeOptions,
+    customNegativePrompt,
+    selectedOptions,
+    selectedStarter,
+    srefEnabled,
+  ]);
+
+  // Build the final prompt whenever dependencies change
+  useEffect(() => {
+    buildFinalPrompt();
+  }, [buildFinalPrompt]);
+
+  const handleSelectOption = (categoryId: string, option: string) => {
+    setSelectedOptions((prev) => ({
+      ...prev,
+      [categoryId]: [...(prev[categoryId] || []), option],
+    }));
+  };
+
+  const handleRemoveOption = (categoryId: string, option: string) => {
+    setSelectedOptions((prev) => ({
+      ...prev,
+      [categoryId]: (prev[categoryId] || []).filter((o) => o !== option),
+    }));
+  };
+
+  const handleAddNegativeOption = (option: string) => {
+    if (!selectedNegativeOptions.includes(option)) {
+      setSelectedNegativeOptions([...selectedNegativeOptions, option]);
+    }
+  };
+
+  const handleRemoveNegativeOption = (option: string) => {
+    setSelectedNegativeOptions(selectedNegativeOptions.filter((o) => o !== option));
+  };
+
+  const handleToggleSref = () => {
+    setSrefEnabled(!srefEnabled);
   };
 
   const handleCopyPrompt = () => {
