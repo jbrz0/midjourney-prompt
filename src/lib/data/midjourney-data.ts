@@ -14,9 +14,14 @@ export interface ParameterCategory {
 
 export const modelVersions: ParameterOption[] = [
   {
-    value: "6.1",
-    label: "Midjourney v6.1 (Latest)",
+    value: "7",
+    label: "Midjourney v7 (Latest)",
     description: "The latest Midjourney model with improved details and coherence"
+  },
+  {
+    value: "6.1",
+    label: "Midjourney v6.1",
+    description: "Improved v6 model with better details and coherence"
   },
   {
     value: "6.0",
